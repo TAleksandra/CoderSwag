@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import com.tatara.coderswag.R
 import com.tatara.coderswag.adapters.CategoryAdapter
 import com.tatara.coderswag.model.Category
@@ -19,5 +20,11 @@ class MainActivity : AppCompatActivity() {
         adapter = CategoryAdapter(this, DataService.categories)
         categoryListView = findViewById(R.id.categoryListView)
         categoryListView.adapter = adapter
+
+        //dodanie listenera do listview
+//        categoryListView.setOnItemClickListener { adapterView, view, i, l ->
+//            val category = DataService.categories[i]
+//            Toast.makeText(this, "You clicked on the ${category.title} cell", Toast.LENGTH_SHORT).show()
+//        }
     }
 }
