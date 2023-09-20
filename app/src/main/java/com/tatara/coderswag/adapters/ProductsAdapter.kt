@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tatara.coderswag.R
 import com.tatara.coderswag.model.Product
 
-class ProductsAdapter(val context: Context, val products: List<Product>) : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
+class ProductsAdapter(val context: Context, val products: List<Product>, val itemClick: (Product) -> Unit) : RecyclerView.Adapter<ProductsAdapter.ProductHolder>() {
 
-    inner class ProductHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ProductHolder(itemView: View, itemClick: (Product) -> Unit) : RecyclerView.ViewHolder(itemView) {
         val productImage = itemView.findViewById<ImageView>(R.id.productImage)
         val productName = itemView.findViewById<TextView>(R.id.productName)
         val productPrice = itemView.findViewById<TextView>(R.id.productPrice)
@@ -22,13 +22,14 @@ class ProductsAdapter(val context: Context, val products: List<Product>) : Recyc
             productImage?.setImageResource(resourceId)
             productName?.text = product.title
             productPrice?.text = product.price
+            itemView.setOnClickListener { itemClick(product) }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductHolder {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.product_list_item, parent, false)
-        return ProductHolder(view)
+        return ProductHolder(view, itemClick)
     }
 
     override fun getItemCount(): Int {
