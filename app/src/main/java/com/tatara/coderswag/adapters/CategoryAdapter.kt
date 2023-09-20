@@ -10,10 +10,8 @@ import android.widget.TextView
 import com.tatara.coderswag.R
 import com.tatara.coderswag.model.Category
 
-class CategoryAdapter(context: Context, categories: List<Category>) : BaseAdapter() {
+class CategoryAdapter(val context: Context, val categories: List<Category>) : BaseAdapter() {
 
-    val context = context
-    val categories = categories
     override fun getCount(): Int {
         return categories.count()
     }
